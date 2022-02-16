@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-dsobservetesting-dev-124001-authRole",
+      "UnauthRoleArn": "arn:aws:iam::055345086115:role/amplify-dsobservetesting-dev-124001-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::055345086115:role/amplify-dsobservetesting-dev-124001-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-dsobservetesting-dev-124001-deployment",
+      "UnauthRoleName": "amplify-dsobservetesting-dev-124001-unauthRole",
+      "StackName": "amplify-dsobservetesting-dev-124001",
+      "StackId": "arn:aws:cloudformation:us-west-2:055345086115:stack/amplify-dsobservetesting-dev-124001/9f09e7c0-8f68-11ec-b030-0666221b9adf",
+      "AmplifyAppId": "d2uxih3mupa6fi"
+    }
+  }
+}

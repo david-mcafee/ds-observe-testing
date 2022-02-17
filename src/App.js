@@ -48,8 +48,8 @@ function App() {
 
   useEffect(() => {
     getTodos();
-    const subscription = DataStore.observe(Todo).subscribe((data) => {
-      console.log(data);
+    const subscription = DataStore.observeQuery(Todo).subscribe((data) => {
+      console.log("DATA FROM OBSERVE:", data);
       setSnapshots((prev) => [...prev, data]);
     });
 

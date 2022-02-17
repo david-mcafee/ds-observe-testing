@@ -49,6 +49,7 @@ function App() {
   useEffect(() => {
     getTodos();
     const subscription = DataStore.observeQuery(Todo).subscribe((data) => {
+      // const subscription = DataStore.observe(Todo).subscribe((data) => {
       console.log("DATA FROM OBSERVE:", data);
       setSnapshots((prev) => [...prev, data]);
     });
@@ -69,9 +70,6 @@ function App() {
             onClick={() => setSnapshots([])}
           />
           <button onClick={updateTodo}>Update Last</button>
-          {/* <button onClick={() => DataStore.start()}>Start</button>
-          <button onClick={() => DataStore.stop()}>Stop</button>
-          <button onClick={() => DataStore.clear()}>Clear</button> */}
           <pre>todos: {JSON.stringify(todos, null, 2)}</pre>
           <pre>snapshots: {JSON.stringify(snapshots, null, 2)}</pre>
         </div>

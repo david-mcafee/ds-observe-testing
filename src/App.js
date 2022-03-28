@@ -9,9 +9,10 @@ function App() {
   const [snapshots, setSnapshots] = useState([]);
 
   function onCreate() {
+    setSnapshots([]);
     const result = DataStore.save(
       new Todo({
-        name: `name ${Date.now()}`,
+        name: `name`,
       })
     );
 
@@ -20,6 +21,7 @@ function App() {
   }
 
   function onDeleteAll() {
+    setSnapshots([]);
     DataStore.delete(Todo, Predicates.ALL);
   }
 
@@ -30,6 +32,7 @@ function App() {
   }
 
   async function updateTodo() {
+    setSnapshots([]);
     const [originalTodo] = await DataStore.query(Todo);
     console.log("Original Todo:", originalTodo);
 
@@ -46,10 +49,21 @@ function App() {
     }
   }
 
+  async function deleteLastTodo() {
+    setSnapshots([]);
+    const [todo] = await DataStore.query(Todo);
+    if (!todo) return;
+    await DataStore.delete(todo);
+  }
+
   useEffect(() => {
+    setSnapshots([]);
     getTodos();
     const subscription = DataStore.observeQuery(Todo).subscribe((data) => {
       // const subscription = DataStore.observe(Todo).subscribe((data) => {
+      // const subscription = DataStore.observe(Todo, (todo) =>
+      //   todo.name("eq", "name")
+      // ).subscribe((data) => {
       console.log("DATA FROM OBSERVE:", data);
       setSnapshots((prev) => [...prev, data]);
     });
@@ -58,22 +72,23 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <div>
+    <div className="container">
+      <div className="section">
+        <div className="buttons">
           <button onClick={getTodos}>Query</button>
-          <input type="button" value="NEW" onClick={onCreate} />
-          <input type="button" value="DELETE ALL" onClick={onDeleteAll} />
-          <input
-            type="button"
-            value="DELETE SNAPSHOTS"
-            onClick={() => setSnapshots([])}
-          />
+          <button onClick={onCreate}>New</button>
           <button onClick={updateTodo}>Update Last</button>
-          <pre>todos: {JSON.stringify(todos, null, 2)}</pre>
-          <pre>snapshots: {JSON.stringify(snapshots, null, 2)}</pre>
+          <button onClick={deleteLastTodo}>Delete Last</button>
+          <button onClick={onDeleteAll}>Delete All</button>
         </div>
-      </header>
+        <pre>todos: {JSON.stringify(todos, null, 2)}</pre>
+      </div>
+      <div className="section">
+        <div className="buttons">
+          <button onClick={() => setSnapshots([])}>Delete Snapshots</button>
+        </div>
+        <pre>snapshots: {JSON.stringify(snapshots, null, 2)}</pre>
+      </div>
     </div>
   );
 }

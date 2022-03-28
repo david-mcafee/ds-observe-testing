@@ -10,6 +10,14 @@
       "StackName": "amplify-dsobservetesting-dev-124001",
       "StackId": "arn:aws:cloudformation:us-west-2:055345086115:stack/amplify-dsobservetesting-dev-124001/9f09e7c0-8f68-11ec-b030-0666221b9adf",
       "AmplifyAppId": "d2uxih3mupa6fi"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2uxih3mupa6fi",
+          "type": "manual"
+        }
+      }
     }
   }
 }

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
+import "../../App.css";
 
 import { DataStore, Predicates } from "aws-amplify";
-import { Todo } from "./models";
+import { Todo } from "../../models";
 
-function App() {
+function TodoComponent() {
   const [todos, setTodos] = useState([]);
   const [snapshots, setSnapshots] = useState([]);
 
@@ -93,4 +93,4 @@ function App() {
   );
 }
 
-export default App;
+export default TodoComponent;

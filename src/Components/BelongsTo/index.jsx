@@ -151,31 +151,23 @@ function BelongsToComponent() {
     getProjects();
     getCompanies();
     getCompanyProjects();
-    const projectSubscription = DataStore.observe(Project).subscribe((data) => {
-      // const subscription = DataStore.observe(Project).subscribe((data) => {
-      // const subscription = DataStore.observe(Project, (project) =>
-      //   project.name("eq", "name")
-      // ).subscribe((data) => {
-      console.log("DATA FROM OBSERVE:", data);
-      setProjectSnapshots((prev) => [...prev, data]);
-    });
+    const projectSubscription = DataStore.observeQuery(Project).subscribe(
+      (data) => {
+        console.log("DATA FROM OBSERVE:", data);
+        setProjectSnapshots((prev) => [...prev, data]);
+      }
+    );
 
-    const companySubscription = DataStore.observe(Company).subscribe((data) => {
-      // const subscription = DataStore.observe(Project).subscribe((data) => {
-      // const subscription = DataStore.observe(Project, (project) =>
-      //   project.name("eq", "name")
-      // ).subscribe((data) => {
-      console.log("DATA FROM OBSERVE:", data);
-      setCompanySnapshots((prev) => [...prev, data]);
-    });
+    const companySubscription = DataStore.observeQuery(Company).subscribe(
+      (data) => {
+        console.log("DATA FROM OBSERVE:", data);
+        setCompanySnapshots((prev) => [...prev, data]);
+      }
+    );
 
-    const companyProjectSubscription = DataStore.observe(
+    const companyProjectSubscription = DataStore.observeQuery(
       CompanyProject
     ).subscribe((data) => {
-      // const subscription = DataStore.observe(Project).subscribe((data) => {
-      // const subscription = DataStore.observe(Project, (project) =>
-      //   project.name("eq", "name")
-      // ).subscribe((data) => {
       console.log("DATA FROM OBSERVE:", data);
       setCompanyProjectSnapshots((prev) => [...prev, data]);
     });

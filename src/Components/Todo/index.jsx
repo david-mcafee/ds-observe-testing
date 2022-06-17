@@ -36,10 +36,17 @@ function TodoComponent() {
     const [originalTodo] = await DataStore.query(Todo);
     console.log("Original Todo:", originalTodo);
 
+    const updatedTodoFields = {
+      name: `name ${Date.now()}`,
+      description: `description ${Date.now()}`,
+    };
+
     try {
       const todo = await DataStore.save(
         Todo.copyOf(originalTodo, (updated) => {
-          updated.name = `name ${Date.now()}`;
+          for (const property in updatedTodoFields) {
+            updated[property] = updatedTodoFields[property];
+          }
         })
       );
 
@@ -60,10 +67,6 @@ function TodoComponent() {
     setSnapshots([]);
     getTodos();
     const subscription = DataStore.observeQuery(Todo).subscribe((data) => {
-      // const subscription = DataStore.observe(Todo).subscribe((data) => {
-      // const subscription = DataStore.observe(Todo, (todo) =>
-      //   todo.name("eq", "name")
-      // ).subscribe((data) => {
       console.log("DATA FROM OBSERVE:", data);
       setSnapshots((prev) => [...prev, data]);
     });
